@@ -1,0 +1,46 @@
+{
+  "modelType": "prototype_weighted_risk_model",
+  "modelLabel": "Prototype Weighted Model",
+  "version": "phase2.1",
+  "note": "PROTOTYPE configuration. Weights, normalisation limits and thresholds were chosen for demonstration and decision-support only. They are NOT official Government of India, NDMA or GSI thresholds and carry no warning authority.",
+  "weights": {
+    "rainfall": 0.35,
+    "slope": 0.3,
+    "historical": 0.2,
+    "terrain": 0.15
+  },
+  "thresholds": {
+    "moderate": 25,
+    "high": 50,
+    "critical": 75
+  },
+  "normalisation": {
+    "rainfall": {
+      "zeroMm": 0,
+      "saturationMm": 250,
+      "note": "Rainfall in mm (24h equivalent, plus a damped share of longer accumulation) is scaled linearly to 0-1 up to the saturation value."
+    },
+    "slope": {
+      "flatDeg": 1,
+      "saturationDeg": 15,
+      "note": "Mean terrain gradient in degrees measured over a ~1 km DEM baseline (not a point maximum), scaled linearly to 0-1 between the flat and saturation values."
+    },
+    "historical": {
+      "radiusKm": 10,
+      "saturationCount": 40,
+      "proximityKm": 5,
+      "densityShare": 0.7,
+      "note": "Combines the number of recorded landslides within radiusKm (source-derived) with proximity to the nearest record."
+    },
+    "terrain": {
+      "flatReliefM": 30,
+      "saturationReliefM": 300,
+      "note": "Prototype proxy: local elevation relief (metres) sampled around the point from a public DEM. Official GSI susceptibility classes are NOT integrated in this phase."
+    }
+  },
+  "rainfallScenarios": {
+    "normal": 40,
+    "heavy": 120,
+    "extreme": 200
+  }
+}
